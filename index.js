@@ -8,11 +8,11 @@ let app = express();
 app.set('view engine',"ejs");
 app.use(bodyParser.urlencoded({ extended:false }));
 // app.use(bodyParser.json());
-
+console.log("hello")
 
 
 let user_email="",user_password="",toEmail="",subject="",html="";
-let work = false;
+let work = false;   
 app.get('/',function(req,res){
     res.render('home');
 })
