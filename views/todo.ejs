@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body>
+    <form>
+    <input  type="text" name="content" value=""/>
+    <button type="submit">Post</button>
+</form>
+    <div>
+        <ul>
+            <% for(let i = 0; i < item.length;i++){%>
+                <li><%=item[i].item %> <button onclick= <%="myDelete(item[i].item)" %> >delete</button></li>
+            <%}%>
+        </ul>
+    </div>
+    <script>
+        function myDelete(index){
+            let id = {id:index};
+            $.ajax({
+                type:'DELETE',
+                url:'/',
+                data:id,
+                success:()=>{
+                    location.reload();
+                }
+            })
+        }
+      $("form").submit(()=>{
+          let item = {item:$("input").val()}
+          $.ajax({
+              type:"POST",
+              url:"/",
+              data:item,
+              success:()=>{
+                  location.reload();
+              }
+          })
+      }); 
+    </script>
+</body>
+</html>
